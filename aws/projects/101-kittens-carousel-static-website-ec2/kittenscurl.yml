@@ -1,0 +1,57 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: >
+  Sample template to provision an EC2 Instance with public IP. Create a Security Group and associate with this EC2. and a user-data to install the Apache HTTP server.
+Resources:
+  WebServerSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Base Security Group
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 0.0.0.0/0
+  WebServerHost:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-0c94855ba95c71c99
+      InstanceType: t2.micro
+      KeyName: virginiaclarus
+      SecurityGroupIds:
+        - hasan-cfdemo-sg
+      Tags:                
+        -                        
+          Key: Name
+          Value: ApacheWebEC2   
+      UserData:
+        Fn::Base64: 
+          !Sub |
+            #! /bin/bash
+            yum update -y
+            yum install httpd -y
+            TOKEN="9d97aa7d49325715090dd0ef4f80097f0959570d"
+            FOLDER="https://$TOKEN@raw.githubusercontent.com/akkocah/clarusway-aws-devops-workshop/master/aws/projects/101-kittens-carousel-static-website-ec2/static-web/"
+            curl -s --create-dirs -o "/var/www/html/index.html" -L "$FOLDER"index.html
+            curl -s --create-dirs -o "/var/www/html/cat0.jpg" -L "$FOLDER"cat0.jpg
+            curl -s --create-dirs -o "/var/www/html/cat1.jpg" -L "$FOLDER"cat1.jpg
+            curl -s --create-dirs -o "/var/www/html/cat2.jpg" -L "$FOLDER"cat2.jpg
+            systemctl start httpd
+            systemctl enable httpd
+Outputs:
+  InstanceId:
+    Description: InstanceId of the first EC2 instance
+    Value: !Ref WebServerHost
+  PublicDNS:
+    Description: Public DNS Name of the EC2 instance
+    Value: !GetAtt 
+      - WebServerHost
+      - PublicDnsName
+  PublicIP:
+    Description: Public IP address of the EC2 instance
+    Value: !GetAtt 
+      - WebServerHost
+      - PublicIp

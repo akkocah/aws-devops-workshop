@@ -9,18 +9,17 @@ while True:
     while True:
         num= input('''(To exit the program, please type "exit")\n
 Please enter a number between 1 and 3999, inclusively : ''')
-        if num == "exit":
+        if num.lower() == "exit":
             print("Exiting the program... Good Bye")
             quit()
         elif num.isdigit() != True:
             print("Please enter the only INTEGER value \n")
-        elif int(num) > 3999:
-            print("Please enter the BETWEEN 1 and 3999 \n")
-        elif int(num) <= 0:
+        elif int(num) > 3999 or int(num) <= 0:
             print("Please enter the BETWEEN 1 and 3999 \n")
         else:
             break
     num = int(num)
+    num1 = num
     roman = ''
     i = 0 #initiate i = 0
     while num > 0:
@@ -28,7 +27,8 @@ Please enter a number between 1 and 3999, inclusively : ''')
             i+=1 #increments i to largest value greater than current num
         roman += conv[i][1] #adds the roman numeral equivalent to string
         num -= conv[i][0] #decrements your num        
-    print(f"Your number is equal as Roman numerals: {roman}\n")
+    
+    print(f'\nRoman numerals representation of decimal number "{num1}"" is equal to {roman}')
     
     
 

@@ -1,8 +1,5 @@
 
-conv = [[1000, 'M'], [900, 'CM'], [500, 'D'], [400, 'CD'],
-        [ 100, 'C'], [ 90, 'XC'], [ 50, 'L'], [ 40, 'XL'],
-        [  10, 'X'], [  9, 'IX'], [  5, 'V'], [  4, 'IV'],
-        [   1, 'I']]
+
 
 print("###This program converts decimal numbers to Roman Numerals ### \n")
 while True:
@@ -20,6 +17,10 @@ Please enter a number between 1 and 3999, inclusively : ''')
             break
     num = int(num)
     num1 = num
+    conv = [[1000, 'M'], [900, 'CM'], [500, 'D'], [400, 'CD'],
+        [ 100, 'C'], [ 90, 'XC'], [ 50, 'L'], [ 40, 'XL'],
+        [  10, 'X'], [  9, 'IX'], [  5, 'V'], [  4, 'IV'],
+        [   1, 'I']]
     roman = ''
     i = 0 #initiate i = 0
     while num > 0:

@@ -22,7 +22,7 @@ Resources:
       InstanceType: t2.micro
       KeyName: virginiaclarus
       SecurityGroupIds:
-        - !Ref WebServerSecurityGroup
+        - hasan-cfdemo-sg
       Tags:                
         -                        
           Key: Name

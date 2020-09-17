@@ -49,6 +49,10 @@
     .warning {
       color: red;
     }
+    .result {
+            color: rgb(255, 38, 0);
+            font-size: x-large;
+        }
 
     .footnote{
       color: rgba(0, 0, 255, 0.712);
@@ -61,7 +65,7 @@
 
   <div><img src="https://clarusway.com/wp-content/uploads/2020/06/clarusway_logo.png" /></div>
 
-  <h2>Project : Roman Numerals Converter Application</h2>
+  <h2>Project : Roman Numerals Converter Application hasan</h2>
   <p>This application converts decimal numbers to Roman numerals. Only numbers from 1 to 3999 are allowed.</p><br>
 
   <form action="/" method="post">
@@ -70,6 +74,11 @@
     <button type="submit">Submit</button>
     {% if not_valid %}
     <p class="warning"><b>Not Valid! Please enter a number between 1 and 3999, inclusively.</b></p>
+    {% endif %}
+
+    {% if not_valid1  %}
+    <h3><b>Result:</b></h3>
+    <p>Number <span class="result"> <b> {{ number_decimal }}</b> </span>equals to <span class="result"><b>{{ number_roman }}</b></span> in Roman Numerals</p><br><br>
     {% endif %}
   </form>
 

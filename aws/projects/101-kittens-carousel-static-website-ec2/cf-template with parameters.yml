@@ -1,0 +1,120 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: |
+  Cloudformation Template for Kittens Carousel Static Website on EC2. This template deploys Kittens Carousel Static website on Amazon Linux 2 EC2 Instance with custom security group allowing http connections on 80. Kittens Carousel Static Website is downloaded from GitHub repository, then deployed on Apache Web Server.
+Parameters:
+  InstanceType:
+    Description: WebServer EC2 instance type. Please select an instance type
+    Default: t2.micro
+    Type: String
+    AllowedValues:
+      - t2.micro
+      - m1.small
+      - m1.medium
+      - m1.large
+      - m1.xlarge
+      - m2.xlarge
+      - m2.2xlarge
+      - m2.4xlarge
+      - m3.xlarge
+      - m3.2xlarge
+      - c1.medium
+      - c1.xlarge
+      - cc1.4xlarge
+      - cc2.8xlarge
+      - cg1.4xlarge
+ 
+Resources:
+  WebServerSecurityGroup:   # normalde logical id geliyor .
+    Type: "AWS::EC2::SecurityGroup"
+    Properties:
+      GroupDescription: Enable HTTP for Apache Web Server and SSH #required
+      #GroupName: String yukarıda isim verdiğimiz için buna gerek yok
+      #SecurityGroupEgress: statefull olduğu için yazmıyoruz yani gelen otomatik gidene eklenir
+        #- Egress
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 80 
+          ToPort: 80
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 22 
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+      Tags:
+        - Key: Name
+          Value: My first Security Group from Cloudformation
+  WebServerHost: 
+    Type: "AWS::EC2::Instance"
+    Properties:
+      #AdditionalInfo: String
+      #Affinity: String
+      #AvailabilityZone: String
+      #BlockDeviceMappings:
+        #- BlockDeviceMapping
+      #CpuOptions:
+        #CpuOptions
+      #CreditSpecification:
+        #CreditSpecification
+      #DisableApiTermination: Boolean
+      #EbsOptimized: Boolean
+      #ElasticGpuSpecifications:
+        #- ElasticGpuSpecification
+      #ElasticInferenceAccelerators:
+        #- ElasticInferenceAccelerator
+      #HibernationOptions:
+        #HibernationOptions
+      #HostId: String
+      #HostResourceGroupArn: String
+      #IamInstanceProfile: String
+      ImageId: ami-0c94855ba95c71c99
+      #InstanceInitiatedShutdownBehavior: String
+      InstanceType: !Ref InstanceType 
+      #Ipv6AddressCount: Integer
+      #Ipv6Addresses:
+        #- InstanceIpv6Address
+      #KernelId: String
+      KeyName: virginiaclarus
+      #LaunchTemplate: cloud formation launch templatei ezer
+        #LaunchTemplateSpecification
+      #LicenseSpecifications:
+        #- LicenseSpecification
+      #Monitoring: Boolean
+      #NetworkInterfaces:
+        #- NetworkInterface
+      #PlacementGroupName: String
+      #PrivateIpAddress: String
+      #RamdiskId: String
+      SecurityGroupIds:
+        - !Ref WebServerSecurityGroup
+      #SecurityGroups:
+        #- String
+      #SourceDestCheck: Boolean
+      #SsmAssociations:
+        #- SsmAssociation
+      #SubnetId: String
+      Tags:
+        - Key: Name
+          Value: !Sub Web Server of ${AWS::StackName}
+      #Tenancy: String
+      UserData: 
+        Fn::Base64:
+          !Sub |
+            #! /bin/bash
+            yum update -y
+            yum install httpd -y
+            cd /var/www/html
+            wget https://raw.githubusercontent.com/akkocah/clarusway-aws-devops-workshop/master/aws/projects/101-kittens-carousel-static-website-ec2/static-web/index.html
+            wget https://raw.githubusercontent.com/akkocah/clarusway-aws-devops-workshop/master/aws/projects/101-kittens-carousel-static-website-ec2/static-web/cat0.jpg
+            wget https://raw.githubusercontent.com/akkocah/clarusway-aws-devops-workshop/master/aws/projects/101-kittens-carousel-static-website-ec2/static-web/cat1.jpg
+            wget https://raw.githubusercontent.com/akkocah/clarusway-aws-devops-workshop/master/aws/projects/101-kittens-carousel-static-website-ec2/static-web/cat2.jpg
+            systemctl start httpd
+            systemctl enable httpd
+      #Volumes:
+        #- Volume
+  
+Outputs:
+  WebsiteURL:
+    Value: !Sub 
+      - http://${PublicAddress}
+      - PublicAddress: !GetAtt WebServerHost.PublicDnsName
+    Description: Kittens Carousel Application URL 

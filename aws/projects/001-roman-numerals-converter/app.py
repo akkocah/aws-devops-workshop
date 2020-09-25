@@ -1,4 +1,4 @@
-from flask import Flask,render_template,redirect,url_for,request
+from flask import Flask,render_template,request
 
 app = Flask(__name__)
 
@@ -24,8 +24,8 @@ def result():
     if (not alpha.isdecimal()) or (not (0 < int(alpha) < 4000)):
         return render_template("index.html", not_valid = True, developer_name="E2139-Hasan Ak")
     number = int(alpha)
-    return render_template("result.html", number_decimal = number, number_roman =convert(number) )
+    return render_template("result.html", number_decimal = number, number_roman =convert(number), developer_name="E2139-Hasan Ak" )
 
 if __name__ == "__main__":
-    #app.run(debug=True)
-    app.run(host='0.0.0.0', port=80)
+    app.run(debug=True)
+    #app.run(host='0.0.0.0', port=80)

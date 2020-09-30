@@ -119,8 +119,7 @@ Resources:
               wget -P templates https://raw.githubusercontent.com/akkocah/clarusway-aws-devops-workshop/master/aws/projects/002-milliseconds-converter/templates/index.html
               wget -P templates https://raw.githubusercontent.com/akkocah/clarusway-aws-devops-workshop/master/aws/projects/002-milliseconds-converter/templates/result.html
               wget https://raw.githubusercontent.com/akkocah/clarusway-aws-devops-workshop/master/aws/projects/002-milliseconds-converter/app.py
-              python3 project002app.py
-      
+              python3 app.py
   
 Outputs:
   URL:

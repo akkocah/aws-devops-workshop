@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>User Emails</title>
+</head>
+<body style="width: auto;">
+
+    <h1 style="margin-top:30px; text-align: center">Welcome to Email Database</h1>
+    
+    <div style="margin-Top: 30px; width: 700px;" class="container">
+        <form action="#" method="POST">
+            <div class="form-group">
+                <label for="name" style="font-weight: bold; font-size: large; ">User Name :</label>
+                <input type="text" name="username" class="form-control" id="formGroupExampleInput" placeholder="Enter the user name for search">
+            </div>
+            
+            <button class="btn btn-danger" type="submit">Show</button>
+        
+        </form>
+    
+    {% if show_result %}
+    <h1>Result for '{{ keyword }}' </h1>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">user_id</th>
+                <th scope="col">User Name</th>
+                <th scope="col">user-email</th>              
+
+              </tr>
+            </thead>
+            <tbody>
+                {% for x in name_emails  %}
+                    <tr>
+                    <th scope="row">{{ x[0] }}</th>
+                    <td>{{ x[1] }}</td>
+                    <td>{{ x[2] }}</td>
+                    </tr>
+                {% endfor %}              
+            </tbody>
+          </table>
+        {% endif %}
+
+        <div>
+            <button style="margin-top: 20px; width: 200px;" class="btn btn-danger" type="submit"><a href="/add" style="color: white;">Add Email </a> </button>
+        </div>
+
+    </div>
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

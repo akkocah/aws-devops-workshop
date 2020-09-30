@@ -1,0 +1,131 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: |
+  CloudFormation Template for Milliseconds Converter Application. This template creates Python Flask Web Application on Amazon Linux 2 EC2 Instance with auto scaling groups and custom security group allowing http connections on port 80. Millisecond Numerals Converter Application is downloaded from Github repository, then installed on Flask.
+  
+Parameters:
+  VpcId:
+    Type: AWS::EC2::VPC::Id
+    Description: VpcId of your existing Virtual Private Cloud (VPC)
+  Subnets:
+    Type: List<AWS::EC2::Subnet::Id>
+    Description: The list of SubnetIds in your Virtual Private Cloud (VPC)
+  KeyName:
+    Description: The EC2 Key Pair to allow SSH access to the instances
+    Type: AWS::EC2::KeyPair::KeyName
+  PolicyTargetValue:
+    Description: Please enter your Target value that triggers the Autoscaling
+    Default: '60'
+    Type: String
+
+
+Resources:
+  mySecGroup:
+    Type: "AWS::EC2::SecurityGroup"
+    Properties:
+      GroupDescription: Enables SSH and HTTP
+      GroupName: Milliseconds-Sec-Group
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 0.0.0.0/0
+
+  myAutoScalingGroup:
+    Type: AWS::AutoScaling::AutoScalingGroup
+    Properties:
+      AutoScalingGroupName: milliseconds-autoscaling
+      LaunchTemplate:
+        LaunchTemplateId: !Ref myLaunchTemplate
+        Version: !GetAtt myLaunchTemplate.LatestVersionNumber
+      AvailabilityZones: !GetAZs 
+      HealthCheckType: ELB
+      DesiredCapacity: '2'
+      HealthCheckGracePeriod: 90
+      MinSize: '1'
+      MaxSize: '3'
+      TargetGroupARNs:
+        - !Ref myALBTargetGroup
+
+  myCPUPolicy:
+    Type: "AWS::AutoScaling::ScalingPolicy"
+    Properties:
+      AutoScalingGroupName: !Ref myAutoScalingGroup
+      PolicyType: TargetTrackingScaling
+      TargetTrackingConfiguration:
+        PredefinedMetricSpecification:
+          PredefinedMetricType: ASGAverageCPUUtilization
+        TargetValue: !Ref PolicyTargetValue
+  
+
+  myApplicationLoadBalancer:
+    Type: "AWS::ElasticLoadBalancingV2::LoadBalancer"
+    Properties:
+      SecurityGroups:
+        - !GetAtt mySecGroup.GroupId
+      Name: Milliseconds-LB
+      Subnets: !Ref Subnets
+       
+  
+
+  myALBListener:
+    Type: "AWS::ElasticLoadBalancingV2::Listener"
+    Properties:
+      DefaultActions: 
+        - Type: forward
+          TargetGroupArn: !Ref myALBTargetGroup
+      LoadBalancerArn: !Ref myApplicationLoadBalancer
+      Port: 80
+      Protocol: HTTP
+  
+  
+  myALBTargetGroup:
+    Type: "AWS::ElasticLoadBalancingV2::TargetGroup"
+    Properties:
+      HealthCheckIntervalSeconds: 25
+      HealthCheckTimeoutSeconds: 5
+      HealthyThresholdCount: 3
+      Name: Milliseconds-targetGroup
+      Port: 80
+      Protocol: HTTP
+      UnhealthyThresholdCount: 3
+      VpcId: !Ref VpcId
+
+  myLaunchTemplate:
+    Type: "AWS::EC2::LaunchTemplate"
+    Properties:
+      LaunchTemplateName: Milliseconds-Converter
+      LaunchTemplateData:
+        ImageId: ami-0947d2ba12ee1ff75
+        InstanceType: t2.micro
+        KeyName: !Ref KeyName
+        SecurityGroups: 
+          - !Ref mySecGroup
+        TagSpecifications:
+            - ResourceType: instance
+              Tags:
+                  - Key: Name
+                    Value: Milliseconds-Converter
+        UserData:
+          Fn::Base64:
+            !Sub |
+              #! /bin/bash
+              yum update -y
+              yum install python3 -y
+              pip3 install flask
+              wget -P templates https://raw.githubusercontent.com/ally17/clarusway-aws-devops-workshop/master/aws/projects/002-milliseconds-converter/templates/index.html
+              wget -P templates https://raw.githubusercontent.com/ally17/clarusway-aws-devops-workshop/master/aws/projects/002-milliseconds-converter/templates/result.html
+              wget https://raw.githubusercontent.com/ally17/clarusway-aws-devops-workshop/master/aws/projects/002-milliseconds-converter/project002app.py
+              python3 project002app.py
+      
+  
+Outputs:
+  URL:
+    Description: The URL of the website
+    Value: !Join 
+      - ''
+      - - 'http://'
+        - !GetAtt myApplicationLoadBalancer.DNSName

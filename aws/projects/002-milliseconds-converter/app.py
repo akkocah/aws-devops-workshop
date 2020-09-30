@@ -33,10 +33,6 @@ def result():
     return render_template("result.html", milliseconds = alpha, result =convert(int(alpha)), developer_name = "E2139-Hasan")
 
 
-
-
-
-
-
 if __name__ == "__main__":
-    app.run(debug=True)
+    #app.run(debug=True)
+    app.run(host="0.0.0.0", port=80)

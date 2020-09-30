@@ -26,7 +26,7 @@ def convert1(milliseconds):
 
 @app.route("/")
 def index():
-    return render_template("index.html", developer_name = "E2150 - Ali Ihsan")
+    return render_template("index.html", developer_name = "E2139 - Hasan")
 
 @app.route("/", methods = ["POST"])
 def result():
@@ -34,15 +34,15 @@ def result():
     milli_num = request.form["second"]
     if roman_num: 
         if (not roman_num.isdecimal()) or (not (0 < int(roman_num) < 4000)):
-            return render_template("index.html", not_valid = True, developer_name = "E2150 - Ali Ihsan")
-        return render_template("index.html", roman = True, developer_name = "E2150 - Ali Ihsan", number_decimal = roman_num, number_roman = convert(int(roman_num)))
+            return render_template("index.html", not_valid = True, developer_name = "E2139 - Hasan")
+        return render_template("index.html", roman = True, developer_name = "E2139 - Hasan", number_decimal = roman_num, number_roman = convert(int(roman_num)))
     elif milli_num:
         if not milli_num.isdecimal() or int(milli_num) <= 0:
-            return render_template('index.html', not_valid_second = True, developer_name = "E2150-Ali ihsan")
-        return render_template('index.html', micro = True, milliseconds = milli_num, result = convert1(int(milli_num)), developer_name = "E2150-Ali ihsan")
+            return render_template('index.html', not_valid_second = True, developer_name = "E2139 - Hasan")
+        return render_template('index.html', micro = True, milliseconds = milli_num, result = convert1(int(milli_num)), developer_name = "E2139 - Hasan")
 
 
 
 if __name__ == "__main__":
-    app.run(debug = True)
-    # app.run(host='0.0.0.0', port=80)
+    #app.run(debug = True)
+    app.run(host='0.0.0.0', port=80)

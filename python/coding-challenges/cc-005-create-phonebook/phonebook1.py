@@ -43,7 +43,7 @@ while True:
 Select operation on Phonebook App (1/2/3/4) :")
     
     if process.lower() == "exit" or process == "4":
-        print("çıkılıyor")
+        print("Exiting Phonebook")
         break
     elif (not process.isdigit() or not 0 < int(process) < 5):
         print("\nInvalid input format, please enter valid number\n")

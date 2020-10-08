@@ -24,11 +24,11 @@ You can find detailed info about the hands-on in the MD files after the click th
 
 `Purpose of the this coding challenge is to solve a combination problem using loops.`
 
-- ## [cc-005-create-phonebook](https://github.com/akkocah/aws-devops-workshop/tree/master/python/hands-on/flask-03-part-1-handling-forms)
+- ## [cc-005-create-phonebook](https://github.com/akkocah/aws-devops-workshop/tree/master/python/coding-challenges/cc-005-create-phonebook)
 
 `Purpose of the this coding challenge is to write a program that creates a phonebook and performs certain operations on the phonebook`
 
-- ## [cc-006-generate-password](https://github.com/akkocah/aws-devops-workshop/tree/master/python/hands-on/flask-03-part-1-handling-forms)
+- ## [cc-006-generate-password](https://github.com/akkocah/aws-devops-workshop/tree/master/python/coding-challenges/cc-006-generate-password)
 
 `The purpose of this coding challenge is to write a program that creates a random password from a given full name.`
 

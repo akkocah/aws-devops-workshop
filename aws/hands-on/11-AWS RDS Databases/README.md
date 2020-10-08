@@ -1,27 +1,5 @@
 
-
-
-
 AWS RDS
-22 September 2020
-1900
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 # Hands-on DB-01 : Configuring and Connecting RDS with Console and Workbench

@@ -42,3 +42,12 @@ List of hands-on trainings within AWS workshop as follows;
 - ## [10-s3-02-bucket-replication](https://github.com/akkocah/aws-devops-workshop/tree/master/aws/hands-on/10-s3-02-bucket-replication)
 
 `Purpose of the this hands-on training is to review how to to create a S3 bucket, configure S3 to host static website, manage lifecycle of objects and to implement bucket replication.`
+
+- ## [11-AWS RDS Databases](https://github.com/akkocah/aws-devops-workshop/tree/master/aws/hands-on/11-AWS%20RDS%20Databases)
+
+`Purpose of the this hands-on training is to configure RDS Instance via AWS Management Console and connect from MySQL Workbench.`
+
+- ## [12-AWS MARIADB](https://github.com/akkocah/aws-devops-workshop/tree/master/aws/hands-on/12-AWS%20MARIADB)
+
+`Purose of the this hands-on training is to Creating a Client Instance onand Connecting to MariaDB Server Instance Remotely`
+:Caution: be carefull

@@ -4,6 +4,7 @@ This workshop repository contains hands-on training, about AWS services
 
 ## Please do not forget to terminate instances and services like Load Balancer after finished the Hands-on 
 ** **
+You can find detailed info about the hands-on in the MD files after the click the links. 
 
 List of hands-on trainings within AWS workshop as follows;
 

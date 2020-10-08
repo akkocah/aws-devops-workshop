@@ -4,6 +4,7 @@
 
 ## Please do not forget to terminate instances and services like Load Balancer after finished the Projects 
 ** **
+You can find detailed info about the hands-on in the MD files after the click the links. 
 
 ### List of projects within AWS workshop as follows;
 

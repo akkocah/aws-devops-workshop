@@ -4,7 +4,7 @@ This workshop repository contains hands-on training, about AWS services
 ---
 
 ** Please do not forget to terminate instances and services like Load Balancer **
-
+** **
 
 List of hands-on trainings within AWS workshop as follows;
 

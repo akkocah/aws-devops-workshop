@@ -16,14 +16,29 @@ List of hands-on trainings within AWS workshop as follows;
 
 `Purpose of this hands on is to teach students how to take a snapshot of EC' instance and crate an image from EC2' instance. `
 
-- ### [04-Working with Application Load Balancer (ALB)](https://github.com/akkocah/aws-devops-workshop/tree/master/aws/hands-on/04-Working%20with%20Application%20Load%20Balancer%20(ALB))
+- ## [04-Working with Application Load Balancer (ALB)](https://github.com/akkocah/aws-devops-workshop/tree/master/aws/hands-on/04-Working%20with%20Application%20Load%20Balancer%20(ALB))
 
 `Purpose of this hands-on training is to learn Application Load Balancer (ALB) working process. Especially, we’ll cover the details of the AWS solution suite and walk through how to set up a basic ALB.`
 
-- ### [05-Auto Scaling Group (ASG) and Application Load Balancer (ALB) with Yaml Template](https://github.com/akkocah/aws-devops-workshop/tree/master/aws/hands-on/05-Auto%20Scaling%20Group%20(ASG)%20and%20Application%20Load%20Balancer%20(ALB)%20with%20Yaml%20Template)
+- ## [05-Auto Scaling Group (ASG) and Application Load Balancer (ALB) with Yaml Template](https://github.com/akkocah/aws-devops-workshop/tree/master/aws/hands-on/05-Auto%20Scaling%20Group%20(ASG)%20and%20Application%20Load%20Balancer%20(ALB)%20with%20Yaml%20Template)
 
 `Purpose of the this hands-on training is to give the students basic knowledge of how to configure AWS Load Balancers with Auto Scaling Group and Launch Configuration.`
 
 - ## [06-EC2 EBS Volumes Handson (Elastic Block Store)](https://github.com/akkocah/aws-devops-workshop/tree/master/aws/hands-on/06-EC2%20EBS%20Volumes%20Handson%20(Elastic%20Block%20Store))
 
 `Purpose of the this hands-on training is to give the students basic knowledge of how to configure and Add disk to EC2, format and mount to EC2 Linux Operating System.`
+
+- ## [07- Application Load Balancer (ALB) with Auto Scaling Group](https://github.com/akkocah/aws-devops-workshop/tree/master/aws/hands-on/07-%20Application%20Load%20Balancer%20(ALB)%20with%20Auto%20Scaling%20Group)
+
+`Purpose of the this hands-on training is to give the students basic knowledge of how to configure AWS Load Balancers with Auto Scaling Group and Launch Template.`
+
+- ## [08-ASG_ELB_TARGET With YAML](https://github.com/akkocah/aws-devops-workshop/tree/master/aws/hands-on/08-ASG_ELB_TARGET%20With%20YAML)
+
+`I prepared the Yaml file. You can create ALB with ASG via AWS Cloud Formation Service`
+
+- ## [09-s3-01-hosting-versioning-logging-lifecycle](https://github.com/akkocah/aws-devops-workshop/tree/master/aws/hands-on/09-s3-01-hosting-versioning-logging-lifecycle)
+`Purpose of the this hands-on training is to instruct students how to to create a S3 bucket, how to configure S3 to host static website and to give understanding to versioning and logging.`
+
+- ## [10-s3-02-bucket-replication](https://github.com/akkocah/aws-devops-workshop/tree/master/aws/hands-on/10-s3-02-bucket-replication)
+
+`Purpose of the this hands-on training is to review how to to create a S3 bucket, configure S3 to host static website, manage lifecycle of objects and to implement bucket replication.`

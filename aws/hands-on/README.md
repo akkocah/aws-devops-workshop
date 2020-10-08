@@ -1,6 +1,10 @@
 # AWS Hands-on Trainings
 
 This workshop repository contains hands-on training, about AWS services
+---
+
+** Please do not forget to terminate instances and services like Load Balancer **
+
 
 List of hands-on trainings within AWS workshop as follows;
 
@@ -10,7 +14,7 @@ List of hands-on trainings within AWS workshop as follows;
 
 - ## [02- EC2 Nginx Installation and Launch Template](https://github.com/akkocah/aws-devops-workshop/tree/master/aws/hands-on/02-%20EC2%20Nginx%20Installation%20and%20Launch%20Template) 
 
-` Purpose of the this hands-on training is to give the students basic knowledge of how to install Nginx Web Server on Amazon Linux 2 EC2 instance and understanding of how to create Launch Template on AWS Console with `user data` and how to version Launch Templates`
+` Purpose of the this hands-on training is to give the students basic knowledge of how to install Nginx Web Server on Amazon Linux 2 EC2 instance and understanding of how to create Launch Template on AWS Console with  ` user data` and how to version Launch Templates`
 
 - ## [03- Working with EC2 Snapshots](https://github.com/akkocah/aws-devops-workshop/tree/master/aws/hands-on/03-%20Working%20with%20EC2%20Snapshots)
 
@@ -50,4 +54,29 @@ List of hands-on trainings within AWS workshop as follows;
 - ## [12-AWS MARIADB](https://github.com/akkocah/aws-devops-workshop/tree/master/aws/hands-on/12-AWS%20MARIADB)
 
 `Purose of the this hands-on training is to Creating a Client Instance onand Connecting to MariaDB Server Instance Remotely`
-:Caution: be carefull
+
+- ## [13-AWS Database Restore](https://github.com/akkocah/aws-devops-workshop/tree/master/aws/hands-on/13-AWS%20Database%20Restore)
+
+`Purpose of the this hands-on training is to give understanding to take a manual snapshot from RDS DB instance, restore RDS DB instance from this snapshot, and also restore RDS DB instance from a point in time. We'll use the RDS crated in former session.(Hands-on DB-01)`
+
+- ## [14-AWS Dynamodb Handson](https://github.com/akkocah/aws-devops-workshop/tree/master/aws/hands-on/14-AWS%20Dynamodb%20Handson)
+
+`Purose of the this hands-on training is to Creating a Dynamodb and insert some data`
+
+- ## [15-VPC](https://github.com/akkocah/aws-devops-workshop/tree/master/aws/hands-on/15-VPC)
+
+`Purpose of the this hands-on training is to create VPC and configure VPC with components such as NAT Gateway Route Table... `
+
+- ## [16-WORDPRESS Install  on EC2](https://github.com/akkocah/aws-devops-workshop/tree/master/aws/hands-on/16-WORDPRESS)
+
+`Purpose of the this hands-on training is to install wordpress(Wordpress LAMP Stack) on to EC2 then migrate the database to AWS RDS instance `
+
+- ## [17- AWS ROUTE 53](https://github.com/akkocah/aws-devops-workshop/tree/master/aws/hands-on/17-AWS%20ROUTE%2053)
+
+`Purpose of the this hands-on training is to creating a DNS record sets and implement Route 53 routing policies.`
+
+- ## [18- CloudFront ](https://github.com/akkocah/aws-devops-workshop/tree/master/aws/hands-on/18-CloudFront)
+
+`Purpose of the this hands-on training is to creating a CloudFront service with Certificate Manager service`
+
+

@@ -64,7 +64,7 @@ Resources:
     Properties:      
       ImageId: ami-0c94855ba95c71c99
       InstanceType: t2.micro
-      KeyName: baris
+      KeyName: hasan # change with your pem key
       LaunchConfigurationName: First-Launch-Config
       SecurityGroups:
         - !Ref SecurityGroup

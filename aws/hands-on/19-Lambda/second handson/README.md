@@ -1,5 +1,5 @@
 # Hands-on Lambda-02 : Setting S3 Bucket, CORS event, Lambda and API Gateway
-Firstly extract the zip file.
+# Firstly extract the zip file.
 
 The topics for this hands-on session will be AWS Lambda, function as a service (FaaS). During this Playground you will create a website hosted on AWS S3 using AWS Lambda and Amazon API Gateway to add dynamic functionality to the site.
 

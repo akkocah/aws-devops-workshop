@@ -79,4 +79,11 @@ List of hands-on trainings within AWS workshop as follows;
 
 `Purpose of the this hands-on training is to creating a CloudFront service with Certificate Manager service`
 
+- ## [19- Lambda ](https://github.com/akkocah/aws-devops-workshop/tree/master/aws/hands-on/19-Lambda)
+
+`The topics for this hands-on session will be AWS Lambda, function as a service (FaaS). During this Playground we will create two AWS S3 Buckets and using AWS Lambda to synchronize them. In addition, We will show tje association between Lambda and API Gateway.`
+
+- ## [20-EFS ](https://github.com/akkocah/aws-devops-workshop/tree/master/aws/hands-on/20-EFS)
+
+`Purpose of the this hands-on training is How to Create EFS & Attach the EFS to the multiple EC2 Linux 2 Instances.`
 

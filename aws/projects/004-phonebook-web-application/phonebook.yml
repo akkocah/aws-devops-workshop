@@ -1,6 +1,6 @@
 AWSTemplateFormatVersion: 2010-09-09
 Description: |
-  CloudFormation Template for Milliseconds Converter Application. This template creates Python Flask Web Application on Amazon Linux 2 EC2 Instance with auto scaling groups and custom security group allowing http connections on port 80. Millisecond Numerals Converter Application is downloaded from Github repository, then installed on Flask.
+  CloudFormation Template for The Phonebook Application aims to create a phonebook application in Python and deployed as a web application with Flask on AWS Application Load Balancer with Auto Scaling Group of Elastic Compute Cloud (EC2) Instances and Relational Database Service (RDS) using AWS Cloudformation Service
   
 Parameters:
   VpcId:
@@ -23,7 +23,7 @@ Resources:
     Type: "AWS::EC2::SecurityGroup"
     Properties:
       GroupDescription: Enables SSH and HTTP for Flask Web Server
-      GroupName: Milliseconds-Sec-Group
+      GroupName: Phonebook-Sec-Group
       SecurityGroupIngress:
         - IpProtocol: tcp
           FromPort: 22
@@ -44,7 +44,7 @@ Resources:
             ToPort: 80
             CidrIp: 0.0.0.0/0
 
-  mydbec2SecGroup:
+  mydbEC2SecGroup:
     Type: "AWS::EC2::SecurityGroup"
     Properties:
       GroupDescription: Open database for access
@@ -52,14 +52,14 @@ Resources:
         - IpProtocol: tcp
           FromPort: 3306
           ToPort: 3306
-          SourceSecurityGroupId:
-            !Ref mySecGroup
+          SourceSecurityGroupId: !GetAtt mySecGroup.GroupId
+            # !Ref Phonebook-Sec-Group
    
   
   myAutoScalingGroup:
     Type: AWS::AutoScaling::AutoScalingGroup
     Properties:
-      AutoScalingGroupName: milliseconds-autoscaling
+      AutoScalingGroupName: phonebook-autoscaling
       LaunchTemplate:
         LaunchTemplateId: !Ref myLaunchTemplate
         Version: !GetAtt myLaunchTemplate.LatestVersionNumber
@@ -88,7 +88,7 @@ Resources:
     Properties:
       SecurityGroups:
         - !GetAtt myALBSecGroup.GroupId
-      Name: Milliseconds-LB
+      Name: phonebook-LB
       Subnets: !Ref Subnets
        
   
@@ -110,7 +110,7 @@ Resources:
       HealthCheckIntervalSeconds: 25
       HealthCheckTimeoutSeconds: 5
       HealthyThresholdCount: 3
-      Name: Milliseconds-targetGroup
+      Name: phonebook-targetGroup
       Port: 80
       Protocol: HTTP
       UnhealthyThresholdCount: 3
@@ -141,7 +141,7 @@ Resources:
         - Key: Name
           Value: myrds
       VPCSecurityGroups:
-        - !GetAtt mydbec2SecGroup.GroupId
+        - !GetAtt mydbEC2SecGroup.GroupId
   
   myLaunchTemplate:
     Type: "AWS::EC2::LaunchTemplate"
@@ -168,9 +168,10 @@ Resources:
               pip3 install flask_sqlalchemy
               pip3 install flask_mysql
               cd /home/ec2-user
-              wget -P templates https://raw.githubusercontent.com/akkocah/clarusway-aws-devops-workshop/master/aws/projects/002-milliseconds-converter/templates/index.html
-              wget -P templates https://raw.githubusercontent.com/akkocah/clarusway-aws-devops-workshop/master/aws/projects/002-milliseconds-converter/templates/result.html
-              wget https://raw.githubusercontent.com/akkocah/clarusway-aws-devops-workshop/master/aws/projects/002-milliseconds-converter/app.py
+              wget -P templates https://raw.githubusercontent.com/akkocah/aws-devops-workshop/master/aws/projects/004-phonebook-web-application/templates/index.html
+              wget -P templates https://raw.githubusercontent.com/akkocah/aws-devops-workshop/master/aws/projects/004-phonebook-web-application/templates/delete.html
+              wget -P templates https://raw.githubusercontent.com/akkocah/aws-devops-workshop/master/aws/projects/004-phonebook-web-application/templates/add-update.html
+              wget https://raw.githubusercontent.com/akkocah/aws-devops-workshop/master/aws/projects/004-phonebook-web-application/phonebook-app.py
               echo "${myRDSDatabase.Endpoint.Address}" >> dbserver.endpoint
               python3 phonebook-app.py
       

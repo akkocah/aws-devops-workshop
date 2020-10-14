@@ -43,7 +43,7 @@ def init_phonebook_db():
     cursor.execute(drop_table)
     cursor.execute(phonebook_table)
     cursor.execute(data)
-
+init_phonebook_db()
 # Write a function named `find_persons` which finds persons' record using the keyword from the phonebook table in the db,
 # and returns result as list of dictionary 
 # `[{'id': 1, 'name':'XXXX', 'number': 'XXXXXX'}]`.

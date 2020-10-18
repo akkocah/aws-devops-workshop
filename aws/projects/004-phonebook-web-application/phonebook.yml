@@ -174,7 +174,7 @@ Resources:
               wget https://raw.githubusercontent.com/akkocah/aws-devops-workshop/master/aws/projects/004-phonebook-web-application/phonebook-app.py
               echo "${myRDSDatabase.Endpoint.Address}" >> dbserver.endpoint
               python3 phonebook-app.py
-      
+  
   
 Outputs:
   URL:

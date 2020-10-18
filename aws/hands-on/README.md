@@ -87,3 +87,10 @@ List of hands-on trainings within AWS workshop as follows;
 
 `Purpose of the this hands-on training is How to Create EFS & Attach the EFS to the multiple EC2 Linux 2 Instances.`
 
+- ## [21- Elastc Beanstalk ](https://github.com/akkocah/aws-devops-workshop/tree/master/aws/hands-on/21-%20Elastc%20Beanstalk)
+
+`Purpose of this hands-on training is to give the students basic knowledge of installing and configuring the AWS Elastic Beanstalk CLI and how to deploy applications using AWS Elastic Beanstalk CLI.`
+
+- ## [22-Cloud Watch ](https://github.com/akkocah/aws-devops-workshop/tree/master/aws/hands-on/22-Cloud%20Watch)
+
+`Purpose of the this hands-on training is to create Dashboard, Cloudwatch Alarm, configure Events option and set Logging up.`

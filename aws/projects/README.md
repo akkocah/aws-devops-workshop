@@ -22,6 +22,8 @@ You can find detailed info about the hands-on in the MD files after the click th
 
 `I added solution that ı combined the Roman Numerals Converter and Millisecond Converter in a same Python file  `
 
+- ## [004-phonebook-web-application](https://github.com/akkocah/aws-devops-workshop/tree/master/aws/projects/004-phonebook-web-application)
 
+`The Phonebook Application aims to create a phonebook application in Python and deployed as a web application with Flask on AWS Application Load Balancer with Auto Scaling Group of Elastic Compute Cloud (EC2) Instances and Relational Database Service (RDS) using AWS Cloudformation Service.`
 
 

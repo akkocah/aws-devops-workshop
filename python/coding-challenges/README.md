@@ -32,6 +32,9 @@ You can find detailed info about the hands-on in the MD files after the click th
 
 `The purpose of this coding challenge is to write a program that creates a random password from a given full name.`
 
+- ## [cc-007-check-consecutive-vowels](https://github.com/akkocah/aws-devops-workshop/tree/master/python/coding-challenges/cc-007-check-consecutive-vowels)
+
+`The purpose of this coding challenge is to write a program that checks if a word contains consecutive vowels or not.`
 
 
 

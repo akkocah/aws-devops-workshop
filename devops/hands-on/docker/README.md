@@ -1,29 +1,17 @@
-# AWS Projects
+# Docker Hands-on Trainings
 
-### This workshop repository contains hands-on training, about AWS services
-
-## Please do not forget to terminate instances and services like Load Balancer after finished the Projects 
+List of hands-on trainings within Docker as follows;
+ 
 ** **
 You can find detailed info about the hands-on in the MD files after the click the links. 
 
-### List of projects within AWS workshop as follows;
 
-- ## [000-kittens-carousel-static-website-ec2](https://github.com/akkocah/aws-devops-workshop/tree/master/aws/projects/001-kittens-carousel-static-website-ec2)
+- ## [Hands-on Docker-01 : Installing Docker on Amazon Linux 2 AWS EC2 Instance](./docker-01-installing-on-ec2-linux2/README.md)
 
-`Kittens Carousel is a static website application deployed with Apache Web Server on AWS Elastic Compute Cloud (EC2) Instance using AWS Cloudformation Service `
+`Purpose of the this hands-on training is to teach  how to install Docker on on Amazon Linux 2 EC2 instance. `
 
-- ## [001-roman-numerals-converter](https://github.com/akkocah/aws-devops-workshop/tree/master/aws/projects/001-roman-numerals-converter)
+- ## [Hands-on Docker-02 : Docker Container Basic Operations](./docker-02-container-basic-operations/README.md) 
 
-`The Roman Numerals Converter Application aims to convert the given number to the Roman numerals. The application is to be coded in Python and deployed as a web application with Flask on AWS Elastic Compute Cloud (EC2) Instance using AWS Cloudformation Service. I added also one page solution. `
-
-- ## [002-milliseconds-converter](https://github.com/akkocah/aws-devops-workshop/tree/master/aws/projects/002-milliseconds-converter)
-
-`The Milliseconds Converter Application aims to convert the given time in milliseconds into hours, minutes, and seconds. The application is to be coded in Python and deployed as a web application with Flask on AWS Application Load Balancer with Auto Scaling Group of Elastic Compute Cloud (EC2) Instances using AWS Cloudformation Service.`
-
-`I added solution that ı combined the Roman Numerals Converter and Millisecond Converter in a same Python file  `
-
-- ## [004-phonebook-web-application](https://github.com/akkocah/aws-devops-workshop/tree/master/aws/projects/004-phonebook-web-application)
-
-`The Phonebook Application aims to create a phonebook application in Python and deployed as a web application with Flask on AWS Application Load Balancer with Auto Scaling Group of Elastic Compute Cloud (EC2) Instances and Relational Database Service (RDS) using AWS Cloudformation Service.`
+` Purpose of the this hands-on training is to give the knowledge of basic operation on Docker containers.`
 
 

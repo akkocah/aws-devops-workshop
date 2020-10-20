@@ -14,4 +14,8 @@ You can find detailed info about the hands-on in the MD files after the click th
 
 ` Purpose of the this hands-on training is to give the knowledge of basic operation on Docker containers.`
 
+- ## [Hands-on Docker-03 : Handling Docker Volumes](./docker-03-handling-volumes/README.md) 
+
+` Purpose of the this hands-on training is to teach how to handle volumes in Docker containers.`
+
 

@@ -133,6 +133,7 @@ Resources:
       MasterUserPassword: "clarusway-1"
       MasterUsername: "admin"
       Port: "3306"
+      MultiAZ: false
       PreferredBackupWindow: "01:00-01:45"
       PreferredMaintenanceWindow: "mon:02:30-mon:03:30"
       PubliclyAccessible: true

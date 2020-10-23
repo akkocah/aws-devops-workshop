@@ -18,4 +18,7 @@ You can find detailed info about the hands-on in the MD files after the click th
 
 ` Purpose of the this hands-on training is to teach how to handle volumes in Docker containers.`
 
+- ## [Hands-on Docker-04 : Docker Networking](./docker-04-networking/README.md) 
+
+` Purpose of the this hands-on training is to give understanding to networking in Docker.`
 

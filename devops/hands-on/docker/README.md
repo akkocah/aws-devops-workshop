@@ -26,3 +26,29 @@ You can find detailed info about the hands-on in the MD files after the click th
 
 ` Purpose of the this hands-on training is to give  understanding to images in Docker.`
 
+- ## [Hands-on Docker-06 : Docker Compose Operations](./docker-06-compose-operations/README.md) 
+
+` Purpose of the this hands-on training is to understanding to Docker Compose. explain what Docker Compose is.`
+
+`install docker-compose-cli`
+
+`explain what the docker-compose.yml is.`
+
+`build a simple Python web application running on Docker Compose`
+
+- ## [Hands-on Docker-07 : Dockerize To-Do Web API Developed in Python Flask](./docker-07-dockerize-to-do-app-on-python-flask/README.md) 
+
+` Purpose of the this hands-on training is to dockerize an Python Flask application with Dockerfile and Docker compose.`
+
+`build a Docker images.`
+
+`configure Docker Compose to run Python Flask app.`
+
+- ## [Hands-on Docker-10 :Difference between exec form and shell form, and CMD instruction and ENTRYPOINT instruction](./docker-10-difference-between-exec-form-shell-form-and-CMD-ENTRYPOINT-instructions/README.md) 
+
+` Purpose of the this hands-on training is to understanding to difference between`
+
+`exec form and shell form`
+
+`CMD instruction and ENTRYPOINT instruction`
+

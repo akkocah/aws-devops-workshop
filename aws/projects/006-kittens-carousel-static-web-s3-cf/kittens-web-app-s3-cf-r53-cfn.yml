@@ -1,0 +1,100 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: |
+  Kittens Carousel is a static website application deployed on AWS Simple Storage Service (S3), served through Cloudfront and Route 53 using AWS Cloudformation Service.
+Parameters:
+  HostDomainName:
+    Description: The DNS name of an existing Amazon Route 53 hosted zone e.g akkocah.com
+    Type: AWS::Route53::HostedZone::Id
+  ChildKittensDomainName:
+    Type: String
+    Description: The full domain name e.g kittens.akkocah.com
+    AllowedPattern: (?!-)[a-zA-Z0-9-.]{1,63}(?<!-)
+    ConstraintDescription: must be a valid DNS zone name  
+  
+Resources:
+  KittensBucket:
+    Type: "AWS::S3::Bucket"
+    Properties:
+      BucketName: !Ref ChildKittensDomainName
+      AccessControl: PublicRead      
+      WebsiteConfiguration:
+        IndexDocument: index.html
+  
+  KittensBucketPolicy:
+    Type: "AWS::S3::BucketPolicy"
+    Properties:
+      Bucket: !Ref KittensBucket  #required
+      PolicyDocument:  #required
+        Statement:
+        - Sid: PublicReadForGetBucketObjects
+          Effect: Allow 
+          Principal: '*'
+          Action: s3:GetObject
+          Resource: !Join ['', ['arn:aws:s3:::', !Ref 'KittensBucket', /* ]]
+  
+  KittensCertificate:
+    Type: "AWS::CertificateManager::Certificate"
+    Properties:
+      CertificateTransparencyLoggingPreference: DISABLED
+      DomainName: !Ref ChildKittensDomainName #required
+      ValidationMethod: DNS
+      DomainValidationOptions:
+        - DomainName: !Ref ChildKittensDomainName
+          HostedZoneId: !Ref HostDomainName
+  
+  KittensCloudFront:
+    Type: "AWS::CloudFront::Distribution"
+    Properties:
+      DistributionConfig: #required
+        Comment: Cloudfront Distrubition pointing to Kittens S3 bucket
+        Origins:
+        - DomainName: !Select [2, !Split ["/", !GetAtt KittensBucket.WebsiteURL]]
+          Id: KittensS3Origin
+          CustomOriginConfig:
+            OriginProtocolPolicy: http-only
+        Enabled: true
+        HttpVersion: 'http2'
+        DefaultRootObject: index.html
+        Aliases:
+        - !Ref ChildKittensDomainName
+        DefaultCacheBehavior:
+          AllowedMethods:
+          - GET 
+          - HEAD
+          Compress: true
+          TargetOriginId: KittensS3Origin
+          ForwardedValues:
+            QueryString: true
+            Cookies:
+              Forward: none    
+          ViewerProtocolPolicy: allow-all
+        PriceClass: PriceClass_All
+        ViewerCertificate:
+          AcmCertificateArn: !Ref KittensCertificate
+          SslSupportMethod: sni-only
+
+  KittensDNSName:
+    Type: "AWS::Route53::RecordSetGroup"
+    Properties:
+      HostedZoneId: !Ref HostDomainName
+      #HostedZoneName: String
+      RecordSets:
+      - Name: !Ref ChildKittensDomainName
+        Type: A
+        AliasTarget:
+          HostedZoneId: Z2FDTNDATAQYW2
+          DNSName: !GetAtt KittensCloudFront.DomainName
+
+Outputs:
+  BucketName:
+    Value: !Ref KittensBucket
+    Description: S3 Bucket Name Kittens Website
+  BucketUrl:
+    Description: 'S3 Bucket URL for Kittens Website'
+    Value: !GetAtt KittensBucket.WebsiteURL
+  CloudfrontEndpoint:
+    Value: !GetAtt KittensCloudFront.DomainName
+    Description: Endpoint for Kittens Cloudfront Distribution 
+  FullDomain:
+    Value: !Ref ChildKittensDomainName
+    Description: Full DomainName of Kittens Carousel Application

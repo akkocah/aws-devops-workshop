@@ -3,7 +3,7 @@ AWSTemplateFormatVersion: 2010-09-09
 Description: >
   This Cloudformation Template creates a Docker machine on EC2 Instance. 
   Docker Machine will run on Amazon Linux 2 (ami-026dea5602e368e96) EC2 Instance with
-  custom security group allowing SSH connections from anywhere on port 22.
+  custom security group allowing SSH connections from anywhere on port 22. Lastly Bookstore Web API Application aims to create a bookstore web service using Docker.
 
 Parameters:
   KeyPairName:
@@ -48,8 +48,12 @@ Resources:
           curl -L "https://github.com/docker/compose/releases/download/1.26.2/docker-compose-$(uname -s)-$(uname -m)" \
           -o /usr/local/bin/docker-compose
           chmod +x /usr/local/bin/docker-compose
-          cd /home/ec2-user
-          
+          cd /home/ec2-user && mkdir bookstore && cd bookstore
+          wget https://raw.githubusercontent.com/akkocah/aws-devops-workshop/master/devops/projects/201-dockerization-bookstore-api-on-python-flask-mysql/Dockerfile
+          wget https://raw.githubusercontent.com/akkocah/aws-devops-workshop/master/devops/projects/201-dockerization-bookstore-api-on-python-flask-mysql/bookstore-api.py
+          wget https://raw.githubusercontent.com/akkocah/aws-devops-workshop/master/devops/projects/201-dockerization-bookstore-api-on-python-flask-mysql/docker-compose.yml
+          wget https://raw.githubusercontent.com/akkocah/aws-devops-workshop/master/devops/projects/201-dockerization-bookstore-api-on-python-flask-mysql/requirements.txt
+          docker-compose up -d
 
 Outputs:
   WebsiteURL:

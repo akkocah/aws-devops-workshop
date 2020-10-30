@@ -133,6 +133,40 @@ Bookstore Web API Application aims to create a bookstore web service using Docke
 
 - To showcase your projects REST functions, use `curl` command for each HTTP methods namely, `GET`, `POST`, `PUT`, `DELETE`.
 
+- Check if the To-Do App is running by entering `http://<ec2-host-name>` in a browser.
+
+- Test the application.
+
+  - List all book in  the `Books List` API using `/books` path and HTTP `GET` method with `curl` command. (localhost means ip adress of the ec2 instance)
+
+  ```bash
+  curl http://localhost/books
+  ```
+
+  - Retrieve task with `id=3` using `/todos/3` path and HTTP `GET` method with `curl` command.
+  
+  ```bash
+  curl http://localhost/books/3
+  curl http://<ec2-host-name>/books/3
+  ```
+
+  - Create new book the `book` using `/books` path and HTTP `POST` method with `curl` command.
+
+  ```bash
+  curl -H "Content-Type: application/json" -X POST -d '{"author":"Hasan AK","book_id":4,"is_sold":false,"title":"Hello World where are you going?"}' http://localhost/books
+  ```
+
+  - Delete task with `id=1` using `/books/1` path and HTTP `DELETE` method with `curl` command.
+  
+  ```bash
+  curl -H "Content-Type: application/json" -X DELETE http://localhost/books/1
+  ```
+
+  - List all books in  the `books list` API using `/books` path and HTTP `GET` method with `curl` command.
+
+  ```bash
+  curl http://localhost/books
+
 ## Resources
 
 - [REpresentational State Transfer](https://en.wikipedia.org/wiki/Representational_state_transfer)

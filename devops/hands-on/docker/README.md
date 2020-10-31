@@ -44,6 +44,22 @@ You can find detailed info about the hands-on in the MD files after the click th
 
 `configure Docker Compose to run Python Flask app.`
 
+- ## [Hands-on Docker-08 : Docker Swarm Basic Operations](./docker-08-swarm-basic-operations/README.md) 
+
+` Purpose of the this hands-on training is to give the Docker Swarm basic operations.`
+
+`Set up a Docker Swarm cluster.`
+
+`Deploy an application as service on Docker Swarm.`
+
+- ## [Hands-on Docker-09 : Docker Swarm Networking, Managing Services, Secrets and Stacks](./docker-09-swarm-networking-managing-services-secrets-stacks/README.md) 
+
+` Purpose of the this hands-on training is to give the Docker Swarm basic operations.`
+
+`Explain what Docker Swarm cluster is.`
+
+`Deploy an application as service on Docker Swarm.`
+
 - ## [Hands-on Docker-10 :Difference between exec form and shell form, and CMD instruction and ENTRYPOINT instruction](./docker-10-difference-between-exec-form-shell-form-and-CMD-ENTRYPOINT-instructions/README.md) 
 
 ` Purpose of the this hands-on training is to understanding to difference between`

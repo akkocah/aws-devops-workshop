@@ -6,4 +6,6 @@ List of hands-on trainings within DevOps as follows;
 
 - [Hands-on Maven](./maven)
 
+- [Hands-on Jenkins](./jenkins)
+
 

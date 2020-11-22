@@ -45,12 +45,34 @@ sudo yum update -y
 
 ```bash
 sudo amazon-linux-extras install java-openjdk11 -y
+sudo yum install java-devel -y
 ```
 
 - Check the java version.
 
 ```bash
 java -version
+```
+- Install Maven
+  
+```bash
+sudo su
+cd /opt
+rm -rf maven
+wget https://ftp.itu.edu.tr/Mirror/Apache/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz
+tar -zxvf $(ls | grep apache-maven-*-bin.tar.gz)
+rm -rf $(ls | grep apache-maven-*-bin.tar.gz)
+sudo ln -s $(ls | grep apache-maven*) maven
+echo 'export M2_HOME=/opt/maven' > /etc/profile.d/maven.sh
+echo 'export PATH=${M2_HOME}/bin:${PATH}' >> /etc/profile.d/maven.sh
+exit
+source /etc/profile.d/maven.sh
+mvn --version
+```
+- Install Git
+  
+```bash
+sudo yum install git -y
 ```
 
 - Add Jenkins repo to the `yum` repository.
@@ -94,18 +116,43 @@ sudo systemctl status jenkins
 ```bash
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 ```
+- Open the web browser and write your ec2 publib adres:8080
+
+- for example http://54.237.111.188:8080/
 
 - Enter the temporary password to unlock the Jenkins.
 
 - Install suggested plugins.
 
-- Create first admin user (call-jenkins:Call-jenkins1234).
+- Create first admin user (admin:123456Pl).
 
 - Check the URL, then save and finish the installation.
 
+- Open Jenkins GUI on web browser
+
+- Maven Settings On Jenkins Page
+- Setting System Maven Path for default usage
+  
+- Go to `Manage Jenkins`
+  - Select `Configure System`
+  - Find `Environment variables` part,
+  - Click `Add`
+    - for `Name`, enter `PATH+EXTRA` 
+    - for `Value`, enter `/opt/maven/bin`
+- Save
+
+- Setting a specific Maven Release in Jenkins for usage
+  
+- Go to the `Global Tool Configuration`
+- To the bottom, `Maven` section
+  - Give a name such as `maven-3.6.3`
+  - Select `install automatically`
+  - `Install from Apache` version `3.6.3`
+- Save
+
 ## Part 2 - Installing Jenkins Server on Amazon Linux 2 with Docker
 
-- Launch an AWS EC2 instance of Amazon Linux 2 AMI with security group allowing SSH and Tomcat (8080) ports and name it as `call-jenkins`.
+- Launch an AWS EC2 instance of Amazon Linux 2 AMI with security group allowing SSH and Tomcat (8080/80/22/All ICMP) ports and name it as `call-jenkins`.
 
 - Connect to the `call-jenkins` instance with SSH.
 

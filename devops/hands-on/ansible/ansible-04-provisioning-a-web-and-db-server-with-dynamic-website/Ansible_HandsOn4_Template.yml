@@ -1,0 +1,98 @@
+AWSTemplateFormatVersion: 2010-09-09
+
+Description: >
+  Template for ansible hands-on (Amazon Linux)
+
+Parameters:
+  KeyPairName:
+    Description: Enter the name of your Key Pair for SSH connections.
+    Type: AWS::EC2::KeyPair::KeyName
+    ConstraintDescription: Must one of the existing EC2 KeyPair
+
+Resources:
+  ControllerNodeSecGr:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Red Hat Enterprise Linux 8 (HVM)
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+  TargetNode1SecGr:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Red Hat Enterprise Linux 8 (HVM)
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 3306
+          ToPort: 3306
+          CidrIp: 0.0.0.0/0
+  TargetNode2SecGr:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Red Hat Enterprise Linux 8 (HVM)
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 0.0.0.0/0
+  ControllerNode:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-096fda3c22c1c990a
+      InstanceType: t2.micro
+      KeyName: !Ref KeyPairName
+      SecurityGroupIds:
+        - !Ref ControllerNodeSecGr
+      Tags:                
+        -                        
+          Key: Name
+          Value: !Sub Controller-Node of ${AWS::StackName}
+      UserData:
+        Fn::Base64: 
+          !Sub |
+            #! /bin/bash
+            yum update -y
+  TargetNode1:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-096fda3c22c1c990a
+      InstanceType: t2.micro
+      KeyName: !Ref KeyPairName
+      SecurityGroupIds:
+        - !Ref TargetNode1SecGr
+      Tags:                
+        -                        
+          Key: Name
+          Value: !Sub Target-Node-2 of ${AWS::StackName}
+      UserData:
+        Fn::Base64: 
+          !Sub |
+            #! /bin/bash
+            yum update -y
+  TargetNode2:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-096fda3c22c1c990a
+      InstanceType: t2.micro
+      KeyName: !Ref KeyPairName
+      SecurityGroupIds:
+        - !Ref TargetNode2SecGr
+      Tags:                
+        -                        
+          Key: Name
+          Value: !Sub Target-Node-2 of ${AWS::StackName}
+      UserData:
+        Fn::Base64: 
+          !Sub |
+            #! /bin/bash
+            yum update -y

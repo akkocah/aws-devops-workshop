@@ -206,8 +206,8 @@ Resources:
               docker-compose config | docker stack deploy --with-registry-auth -c - phonebook              
             - ECR_REGISTRY: !Sub ${AWS::AccountId}.dkr.ecr.${AWS::Region}.amazonaws.com
               APP_REPO_NAME:  clarusway-repo/phonebook-app
-              GITHUB_REPO:  https://github.com/serdarcw/202-jenkins-pipeline-for-phonebook-app-on-docker-swarm.git
-              GIT_FILE_URL: https://raw.githubusercontent.com/serdarcw/202-jenkins-pipeline-for-phonebook-app-on-docker-swarm/master/
+              GITHUB_REPO:  https://github.com/akkocah/202-jenkins-pipeline-for-phonebook-app-on-docker-swarm.git
+              GIT_FILE_URL: https://raw.githubusercontent.com/akkocah/202-jenkins-pipeline-for-phonebook-app-on-docker-swarm/master/
   DockerManager2:
     Type: "AWS::EC2::Instance"
     DependsOn:

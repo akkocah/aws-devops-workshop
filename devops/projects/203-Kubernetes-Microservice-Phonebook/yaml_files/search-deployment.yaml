@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: search-deploy
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      name: phonebook-search
+      app: search-api
+  template:
+    metadata:
+      labels:
+        name: phonebook-search
+        app: search-api
+    spec:
+      containers:
+      - image: hasanakkoca/phonebook-search
+        imagePullPolicy: Always
+        name: search-api
+        ports:
+        - containerPort: 80
+        env:
+        - name: MYSQL_DATABASE_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: phonebook-configmap
+              key: DATABASE_URL
+        - name: MYSQL_DATABASE
+          valueFrom:
+            configMapKeyRef:
+              name: phonebook-configmap
+              key: DB
+        - name: MYSQL_USER
+          valueFrom:
+            configMapKeyRef:
+              name: phonebook-configmap
+              key: USER
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: phonebook-secret
+              key: mysql-admin-password
